@@ -69,8 +69,6 @@ architecture rtl of matrix_fpga_rom is
 	signal selMem				: std_logic_vector(1 downto 0);
 begin
 --CONTROLADOR DE LA MATRIZ----------------------------------------------------------
---rows(1) <= '0';
---cols(1) <= '1';
 	ledsDelay: entity work.univ_bin_counter
 		generic map(	N => 14)
 		port map(		clk 		=> clk,
