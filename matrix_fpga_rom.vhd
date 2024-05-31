@@ -1,0 +1,23 @@
+--library ieee;
+--	use ieee.std_logic_1164.all;
+--	use ieee.numeric_std.all;
+--	
+--entity matrix_fpga_rom is 
+--
+--end entity;
+--
+--architecture rtl of matrix_fpga_rom is 
+--begin
+--
+--	ledsDelay: entity work.univ_bin_counter
+--		generic map()
+--		port map();
+--	
+--	matrixControl: entity work.matrix_controller
+--		generic map()
+--		port map();
+--		
+--	ROM: entity work.my_rom
+--		port map();
+--
+--end architecture;
