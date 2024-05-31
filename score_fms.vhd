@@ -5,7 +5,7 @@ library ieee;
 entity score_fms is 
 	port		(	clk		: in std_logic;
 					rst		: in std_logic;
-					addr_in	: in std_logic_vector(7 downto 0);
+					addr_in	: in std_logic_vector(6 downto 0);
 					p_j1		: out std_logic_vector(3 downto 0);
 					p_j2		: out std_logic_vector(3 downto 0);
 					gol		: out std_logic;
@@ -20,7 +20,7 @@ architecture rtl of score_fms is
 	signal count_next0, count_next1		: unsigned(3 downto 0);
 	signal count_s0, count_s1 				: unsigned(3 downto 0);
 		
-	signal addr : unsigned(N-1 downto 0);
+	signal addr : unsigned(6 downto 0);
 
 begin		
 	addr <= unsigned(addr_in);
@@ -45,7 +45,7 @@ begin
 
 		end process;
 		
-	LedControll: process(count_s0,count_s1,count_next0,count_next1, state_pr, )
+	LedControll: process(count_s0,count_s1,count_next0,count_next1, state_pr, addr)
 		begin
 			case state_pr is
 				when state0 =>
@@ -63,29 +63,21 @@ begin
 					gol <= '1';
 					count_next0 <= count_s0 + 1;
 					count_next1 <= count_s1;
-					if(addr = 15 or addr= 31 or addr= 47 or  addr= 63 or addr= 79 or addr= 95 or addr= 111 or addr= 127) then 
-						state_next <= state2;
-					else
-						state_next <= state0;
-					end if;
+					state_next <= state0;
 				when state2 => 
 					gol <= '1';
 					count_next0 <= count_s0;
 					count_next1 <= count_s1 + 1;
-					if(addr = 0 or addr= 16 or addr= 32 or addr= 48 or addr= 64 or addr= 80 or addr= 96 or addr= 112) then 
-						state_next <= state1;
-					else
-						state_next <= state0;
-					end if;
+					state_next <= state0;
 			end case;
 		end process;
 --win----------------------------------------------
 win: process(count_s0, count_s1)
 	begin 
-		if( count_s0 = 9) then 
+		if( count_s0 >= 9) then 
 			win_j1 <= '1';
 			win_j2 <= '0';
-		elsif(count_s1 = 9) then 
+		elsif(count_s1 >= 9) then 
 			win_j2 <= '1';
 			win_j1 <= '0';
 		else 
