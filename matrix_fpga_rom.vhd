@@ -3,8 +3,8 @@ library ieee;
 	use ieee.numeric_std.all;
 	
 entity matrix_fpga_rom is 
-	port(	clk	: in std_logic;
-			rst	: in std_logic;
+	port(	clk		: in std_logic;
+			rst		: in std_logic;
 			rows	: out std_logic_vector(7 downto 0):= (others => '1');
 			cols	: out std_logic_vector(15 downto 0):= (others => '0');
 			p1_ss	: out std_logic_vector(6 downto 0);
@@ -22,7 +22,7 @@ architecture rtl of matrix_fpga_rom is
 	signal max_tick_B	: std_logic;
 	signal ena_time		: std_logic;
 	signal syn_clr		: std_logic;
-	signal data_ram	:	std_logic_vector(0 downto 0);
+	signal data_ram		: std_logic_vector(0 downto 0);
 	signal data_rom1	: std_logic_vector(0 downto 0);
 	signal data_rom2	: std_logic_vector(0 downto 0);
 	
@@ -40,7 +40,7 @@ architecture rtl of matrix_fpga_rom is
 	signal w_addr_R1A	: std_logic_vector(6 downto 0);
 	signal w_addr_R1B	: std_logic_vector(6 downto 0);
 	
-	signal mux_exit	: std_logic_vector(7 downto 0);
+	signal mux_exit		: std_logic_vector(7 downto 0);
 	signal count_mux 	: std_logic_vector(2 downto 0);
 	signal count_rst 	: std_logic_vector(6 downto 0);
 	signal max_tick_m	: std_logic;
@@ -57,16 +57,16 @@ architecture rtl of matrix_fpga_rom is
 	signal w_data_B	: std_logic_vector(0 downto 0);
 	signal w_addr_B	: std_logic_vector(6 downto 0);
 	
-	signal gol	: std_logic;
+	signal gol		: std_logic;
 	signal rst_ball	: std_logic;
 	
 	signal max_tick_m1, max_tick_m2	: std_logic;
-	signal count_mux1		: std_logic_vector(2 downto 0);
-	signal mux_exit1 		: std_logic_vector(9 downto 0);
+	signal count_mux1				: std_logic_vector(2 downto 0);
+	signal mux_exit1 				: std_logic_vector(9 downto 0);
 	
-	signal p_j1, p_j2	: std_logic_vector(3 downto 0);
+	signal p_j1, p_j2		: std_logic_vector(3 downto 0);
 	signal win_j1, win_j2	: std_logic;
-	signal selMem		: std_logic_vector(1 downto 0);
+	signal selMem			: std_logic_vector(1 downto 0);
 begin
 --CONTROLADOR DE LA MATRIZ----------------------------------------------------------
 	ledsDelay: entity work.univ_bin_counter
